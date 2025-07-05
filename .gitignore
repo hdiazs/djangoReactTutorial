@@ -64,3 +64,4 @@ backend/local_settings.py
 backend/.vscode/
 !backend/.vscode/extensions.json
 backend/.idea/
+
