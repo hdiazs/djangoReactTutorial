@@ -3,10 +3,11 @@ import Button from '@mui/material/Button';
 
 export default function FormButton(props) {
 
-    const {label} = props
+    const {label, type} = props
 
     return (
-        <Button 
+        <Button
+            type = {type} 
             variant="contained"
             className="w3-purple"
             fullWidth

@@ -76,8 +76,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tutorial_auth',
-        'USER': 'root',
-        'PASSWORD': '',
+        'USER': 'root', # Recuerda cambiar estos valores
+        'PASSWORD': '',# Recuerda cambiar estos valores
         'HOST': 'localhost',       
         'PORT': '3306',
     }
