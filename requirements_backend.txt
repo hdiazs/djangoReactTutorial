@@ -7,3 +7,4 @@ mysqlclient
 PyJWT
 pytz
 python-dotenv
+django-rest-knox

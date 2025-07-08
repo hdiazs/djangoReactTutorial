@@ -11,10 +11,7 @@ const Register = () => {
 
     const navigate = useNavigate()
     const {handleSubmit, control} = useForm()
-    const submission = (data) => {
-
-        console.log(data);
-        
+    const submission = (data) => {        
         Axios.post(
             `register/`,
             {
@@ -41,8 +38,8 @@ const Register = () => {
                     style={
                         { 
                             minWidth:300, 
-                            height:"50%", 
-                            width:"20%"
+                            height:"70%", 
+                            width:"25%"
                         }
                     }
                 >

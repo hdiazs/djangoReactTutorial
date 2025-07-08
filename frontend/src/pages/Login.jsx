@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import Axios from '../components/Axios'
 import { Box } from '@mui/material'
 import FormTextField from '../components/forms/FormTextField'
 import FormPassField from '../components/forms/FormPassField'
@@ -7,20 +9,39 @@ import '../styles/login.css'
 
 const Login = () => {
 
+    const navigate = useNavigate()
+    const {handleSubmit, control} = useForm()
+    const submission = (data) => {        
+        Axios.post(
+            `login/`,
+            {
+                email : data.email,
+                password : data.password,
+            }
+        ).then((response)=>{
+            localStorage.setItem('Token',response.data.token)
+            navigate(`/home`)
+        }).catch((error)=>{
+            console.error('Error during login', error)
+        })
+    }
+
     return(
         <>
             <div className="loginBackground">
-                <Box 
+
+                <form 
+                    onSubmit={handleSubmit(submission)} 
                     className={`
-                        w3-white 
+                        w3-white
+                        w3-display-middle
                         w3-bar 
                         w3-bar-block 
-                        w3-display-middle                        
-                    `} 
+                    `}
                     style={
                         { 
                             minWidth:300, 
-                            height:"40%", 
+                            height:"50%", 
                             width:"20%"
                         }
                     }
@@ -40,6 +61,12 @@ const Login = () => {
                             label={
                                 "E-mail"
                             }
+                            name={
+                                "email"
+                            }
+                            control={
+                                control
+                            }
                             
                         />
                     </Box>
@@ -50,7 +77,13 @@ const Login = () => {
 
                             label={
                                 "Password"
-                            } 
+                            }
+                            name={
+                                "password"
+                            }
+                            control={
+                                control
+                            }
                         />
 
                     </Box>
@@ -58,6 +91,9 @@ const Login = () => {
                     <Box className={"w3-bar-item"}>
 
                         <FormButton
+                            type = {
+                                "submit"
+                            }
                             label = {
                                 "Sign in"
                             }
@@ -66,13 +102,13 @@ const Login = () => {
                     </Box>
                     <Box className={"w3-bar-item w3-center"}>
 
-                       <Link to="/register" className="w3-button">
+                    <Link to="/register" className="w3-button">
                             No account yet?, Sign up!
-                       </Link>
+                    </Link>
 
                     </Box>
-                    
-                </Box>
+                        
+                </form>
                 
             </div>
         </>

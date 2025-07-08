@@ -5,6 +5,7 @@ import About from "./pages/About"
 import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Navbar from "./components/Navbar"
+import ProtectedRoute from "./components/ProtectedRoutes"
 
 function App() {
 
@@ -30,8 +31,10 @@ function App() {
           content = {
 
             <Routes>
-              <Route path="/home" element={<Home/>} />
-              <Route path="/about" element={<About/>} />
+              <Route element={<ProtectedRoute/>}>
+                  <Route path="/home" element={<Home/>} />
+                  <Route path="/about" element={<About/>} />  
+              </Route>
             </Routes>
 
           }
