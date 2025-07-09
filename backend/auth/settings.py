@@ -1,5 +1,5 @@
-
 from pathlib import Path
+#import os # Se activa para el uso de variables de sistema y protección de información
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_rest_passwordreset',
     'knox',
     'corsheaders',
     'users',
@@ -63,7 +64,7 @@ REST_FRAMEWORK = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/"Templates"], # Esta linea se modifica para crear un template de recuperación de contraseña 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -110,6 +111,18 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+# Para usar este apartado se debe tener un servicio de correo que permita la configuración de envio
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.mail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True 
+# DEFAULT_FROM_EMAIL = "MY APP"
+# EMAIL_HOST_USER = 'testemail@email.com'
+# EMAIL_HOST_PASSWORD = 'apppassword'
+
 
 
 # Internationalization
