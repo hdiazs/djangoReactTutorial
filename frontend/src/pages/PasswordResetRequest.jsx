@@ -4,26 +4,37 @@ import Axios from '../components/Axios'
 import { Box } from '@mui/material'
 import Swal from 'sweetalert2'
 import FormTextField from '../components/forms/FormTextField'
-import FormPassField from '../components/forms/FormPassField'
 import FormButton from '../components/forms/FormButton'
 import '../styles/login.css'
 
-const Login = () => {
+const PasswordResetRequest = () => {
 
     const navigate = useNavigate()
     const {handleSubmit, control} = useForm()
     const submission = (data) => {        
         Axios.post(
-            `login/`,
+            `api/password_reset`,
             {
                 email : data.email,
-                password : data.password,
             }
-        ).then((response)=>{
-            localStorage.setItem('Token',response.data.token)
-            navigate(`/home`)
-        }).catch((error)=>{            
-            
+        ).then(()=>{
+            Swal.fire({
+                title: 'Sent it!',
+                text: 'If your email is registered, you should receive a password reset link',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            }).then(()=>{
+                navigate('/')
+            })
+        }).catch((error) => {
+            Swal.fire({
+                title: 'Error',
+                text: 'Something went wrong',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            }).then(()=>{
+                navigate('/request/password_reset')
+            })
         })
     }
 
@@ -42,15 +53,15 @@ const Login = () => {
                     style={
                         { 
                             minWidth:300, 
-                            height:"60%", 
-                            width:"25%"
+                            height:"40%", 
+                            width:"40%"
                         }
                     }
                 >
                     <Box className={"w3-bar-item"}>
 
                         <Box className={"w3-center"}>
-                            <h2>Login for Auth App</h2>
+                            <h2>Request password reset</h2>
                         </Box>
 
                     </Box>
@@ -74,41 +85,21 @@ const Login = () => {
 
                     <Box className={"w3-bar-item"}>
 
-                        <FormPassField
-
-                            label={
-                                "Password"
-                            }
-                            name={
-                                "password"
-                            }
-                            control={
-                                control
-                            }
-                        />
-
-                    </Box>
-
-                    <Box className={"w3-bar-item"}>
-
                         <FormButton
                             type = {
                                 "submit"
                             }
                             label = {
-                                "Sign in"
+                                "Send e-mail"
                             }
                         />
 
                     </Box>
                     <Box className={"w3-bar-item w3-center"}>
 
-                    <Link to="/register" className="w3-button">
-                            No account yet?, Sign up!
-                    </Link>
-                    <Link to="/request/password_reset" className="w3-button">
-                            Forgot your password?, Click here!
-                    </Link>
+                        <Link to="/register" className="w3-button">
+                                No account yet?, Sign up!
+                        </Link>
 
                     </Box>
                         
@@ -119,4 +110,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default PasswordResetRequest

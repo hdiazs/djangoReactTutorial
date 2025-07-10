@@ -52,7 +52,7 @@ CORS_ALLOWED_ORIGINS = [
 AUTH_USER_MODEL = 'users.CustomUser' # Recuerda que este campo es para el modelo de autenticación
 
 AUTHENTICATION_BACKEND = [
-    'users.auth_backend.EmailAuthBackend'
+    'django.contrib.auth.backends.ModelBackend', # Esta es la instrucción correcta 
 ]
 
 ROOT_URLCONF = 'auth.urls'
@@ -119,9 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # EMAIL_HOST = 'smtp.mail.com'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True 
-# DEFAULT_FROM_EMAIL = "MY APP"
-# EMAIL_HOST_USER = 'testemail@email.com'
-# EMAIL_HOST_PASSWORD = 'apppassword'
+# DEFAULT_FROM_EMAIL = 'APP in email service'
+# EMAIL_HOST_USER = 'test_email@email.com'
+# EMAIL_HOST_PASSWORD = 'app_password'
 
 
 

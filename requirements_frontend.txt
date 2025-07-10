@@ -2,3 +2,4 @@ axios
 react-router-dom
 @mui/icons-material @mui/material @emotion/react @emotion/styled
 react-hook-form
+sweetalert2-react-content sweetalert2@latest

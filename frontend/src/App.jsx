@@ -4,13 +4,14 @@ import Home from "./pages/Home"
 import About from "./pages/About"
 import Register from "./pages/Register"
 import Login from "./pages/Login"
+import PasswordResetRequest from "./pages/PasswordResetRequest"
 import Navbar from "./components/Navbar"
 import ProtectedRoute from "./components/ProtectedRoutes"
 
 function App() {
 
   const location  = useLocation()
-  const noNavbar = location.pathname === "/register" || location.pathname === "/"
+  const noNavbar = location.pathname === "/register" || location.pathname === "/" || location.pathname === "/request/password_reset"
   
   return (
     <>
@@ -21,6 +22,7 @@ function App() {
 
             <Route path="/" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
+            <Route path="/request/password_reset" element={<PasswordResetRequest/>} />
 
           </Routes>
 
